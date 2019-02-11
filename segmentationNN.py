@@ -59,6 +59,7 @@ if not os.path.exists(MODEL_STORE_PATH):
 class SegNet(nn.Module):
     def __init__(self):
         super(SegNet, self).__init__()
+	#Conv layers
         self.batchNorm = nn.modules.BatchNorm2d(input_shape)
         self.Convlayer1 = nn.Sequential(
             nn.Conv2d(3, 8, kernel_size=3, stride=1, padding=2),
@@ -84,6 +85,7 @@ class SegNet(nn.Module):
             nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=2),
             nn.ReLU(), nn.Dropout(0.2))
         self.maxPool3 = nn.MaxPool2d(kernel_size=2, stride=2)
+	#Deconv layers
         self.upSample1 = nn.UpsamplingBilinear2d(size=(2,2))
         self.DeConvlayer1 = nn.Sequential(
             nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=2),
@@ -108,7 +110,7 @@ class SegNet(nn.Module):
         self.DeConvlayer7 = nn.Sequential(
             nn.Conv2d(16, 1, kernel_size=3, stride=1, padding=2),
             nn.ReLU())
-        
+      #forward propagation function
     def forward(self, x):
         out = self.batchNorm(x)
         out = self.Convlayer1(out)
