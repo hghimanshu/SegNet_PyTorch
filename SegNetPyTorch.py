@@ -129,9 +129,8 @@ for epoch in range(epochs):
         acc_list.append(correct / total)
 
         if (i + 1) % 100 == 0:
-            print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}, Accuracy: {:.2f}%'
-                  .format(epoch + 1, epochs, i + 1, total_step, loss.item(),
-                          (correct / total) * 100))
+            print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}
+                  .format(epoch + 1, epochs, i + 1, total_step, loss.item())
 
 # Test the model
 model.eval()
